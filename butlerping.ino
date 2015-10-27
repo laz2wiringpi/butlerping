@@ -9,10 +9,10 @@
 #define MAX_DISTANCE 150 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 #define strobepin 9 
 #define MS_ON 20 
-#define WAIT_TIME 5000
+#define WAIT_TIME 40000
 
 
-#define  DEBUG_SERIAL
+//#define  DEBUG_SERIAL
 
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 unsigned long last_trig = 0;
@@ -25,7 +25,9 @@ void setup() {
 	pinMode(13, OUTPUT);
 	digitalWrite(13, LOW);
 	pinMode(strobepin, OUTPUT);
-	digitalWrite(strobepin, LOW);
+  digitalWrite(strobepin, LOW);
+	last_trig =     millis() - WAIT_TIME ;
+  
 }
 
 void loop() {
